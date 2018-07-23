@@ -96,7 +96,7 @@ def get_spotify_lyrics(stdscr):
     curses.init_color(0, 0, 0, 0)
 
     height, width = stdscr.getmaxyx()
-    pad_height = 100
+    pad_height = 200
     pad = curses.newpad(pad_height, width)
     pad.scrollok(True)
 
