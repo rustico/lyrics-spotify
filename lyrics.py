@@ -5,6 +5,7 @@ import curses
 import threading
 import requests
 from bs4 import BeautifulSoup
+import lyricwikia
 
 
 def get_spotify_song_data():
@@ -74,13 +75,16 @@ def spotify_thread(stdscr, pad):
     while True:
         height, width = stdscr.getmaxyx()
         song = get_spotify_song_data()
-        title = '{} - {}'.format(song['title'], song['artist'])
+        title = '{} - {}\n'.format(song['title'], song['artist'])
         if old_song != title:
             pos = 0
             old_song = title
-            lyrics = get_lyrics(title)
+            try:
+                lyrics = lyricwikia.get_lyrics(song['artist'], song['title'])
+            except lyricwikia.LyricsNotFound:
+                lyrics = get_lyrics(title)
             pad.clear()
-            pad.addstr(title,  curses.A_BOLD)
+            pad.addstr(title, curses.A_BOLD)
             pad.addstr(lyrics)
             pad.refresh(0, 0, 0, 0, height - 1, width)
 
