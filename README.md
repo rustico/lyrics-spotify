@@ -1,4 +1,4 @@
-simple and dirty copy of https://github.com/bhrigu123/Instant-Lyrics
+quick, simple and dirty copy of https://github.com/bhrigu123/Instant-Lyrics
 
 ```bash
 export TERM='xterm-256color'

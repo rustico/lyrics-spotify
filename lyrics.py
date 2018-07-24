@@ -66,10 +66,12 @@ def get_lyrics(song_name):
 
 
 pos = 0
+lyrics = ''
+title = ''
 
 
 def spotify_thread(stdscr, pad):
-    global pos
+    global pos, lyrics, title
 
     old_song = ''
     while True:
@@ -111,8 +113,14 @@ def get_spotify_lyrics(stdscr):
 
         if ch < 256 and chr(ch) == 'k' and pos > 0:
             pos -= 10
+            pad.clear()
+            pad.addstr(title, curses.A_BOLD)
+            pad.addstr(lyrics)
             pad.refresh(pos, 0, 0, 0, height - 1, width)
         elif ch < 256 and chr(ch) == 'j' and pos < pad_height - height:
+            pad.clear()
+            pad.addstr(title, curses.A_BOLD)
+            pad.addstr(lyrics)
             pos += 10
             pad.refresh(pos, 0, 0, 0, height - 1, width)
         elif ch < 256 and chr(ch) == 'q':
