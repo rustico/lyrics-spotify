@@ -77,7 +77,8 @@ def spotify_thread(stdscr, pad):
     while True:
         height, width = stdscr.getmaxyx()
         song = get_spotify_song_data()
-        title = '{} - {}\n'.format(song['title'], song['artist'])
+        song_title = song['title'].split('-')[0]
+        title = '{} - {}\n'.format(song_title, song['artist'])
         if old_song != title:
             pos = 0
             old_song = title
