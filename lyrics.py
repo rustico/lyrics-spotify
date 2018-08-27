@@ -84,6 +84,9 @@ def spotify_thread(stdscr, pad):
             old_song = title
             try:
                 lyrics = lyricwikia.get_lyrics(song['artist'], song['title'])
+                if 'Unfortunately, we are not licensed to display' in lyrics:
+                    lyrics = get_lyrics(title)
+
             except lyricwikia.LyricsNotFound:
                 lyrics = get_lyrics(title)
             pad.clear()
